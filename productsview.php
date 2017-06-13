@@ -1,5 +1,4 @@
 <?php
-			include_once "functions.php";
 			ini_set('mysql.connect_timeout', 300);
 			ini_set('default_socket_timeout', 300);
 
@@ -72,16 +71,23 @@
                 <ul class="nav navbar-nav">
                     
 					<li>
-                        <a href="register.php"><strong>Register</strong></a>
+                        <a href="register.php" style= "font-weight: bold;padding-right: 80px;" >Register</a>
                     </li>
 					
 					<li>
-                        <a href="login.php"><strong>Buy Farm Products</strong></a>
+                        <a href="login.php" style= "font-weight: bold;padding-right: 80px;" >Buy Farm Products</a>
                     </li>
 					<li>
-                        <a href="loginfarmers.php"><strong>Login As Farmer</strong></a>
+                        <a href="loginfarmers.php" style= "font-weight: bold;padding-right: 80px;" >Login As Farmer</a>
+                    </li>
+					<li>
+                        <a href="#" style= "font-weight: bold;padding-right: 50px;" >How it Works</a>
                     </li>
 					
+				<li>
+					<a  class = "cart" href = "#"; style = "color: #f9a023;"><strong>Cart</strong><i class= " fa fa-cart-plus" style ="color:#f9a023; height: 30%; "></i> </a>
+				</li>
+				
                 </ul>
             </div>
         </div>
@@ -158,5 +164,18 @@
 ?>
 
 </div>
+	<div style = "padding: 1em 0 2em 0;">
+	
+		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
+										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
+										<p align = "center">Contact Us: (234) 8133936723
+											&copy; FarmConnect. All rights reserved</p>
+								
+		</footer>
+				
+</div>
+
+
+
 </body>
 </html>

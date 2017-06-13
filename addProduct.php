@@ -96,7 +96,7 @@
   
 </head>
 
-<body>
+<body style = "padding-top: 40px;">
    
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -109,16 +109,13 @@
                 </button>
                 <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
             </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"style = "font-weight: bold;">
                 <ul class="nav navbar-nav">
                     
 					<li>
-                        <a href="register.php">Register</a>
+                        <a href="FarmerProfile.php?username=<?php if(isset($_SESSION['Company_Name'])) echo $_SESSION['Company_Name'] ; ?>">View Profile</a>
                     </li>
 					
-					<li>
-                        <a href="loginfarmers.php">Login As Farmer</a>
-                    </li>
 					<li>
 						<a href = "logout.php">Logout</a>
                     </li>
@@ -128,10 +125,10 @@
         </div>
     </nav>
 	</br>
-	
-	<h3 align = "center">You are logged in as <?php if(isset($_SESSION['Company_Name'])) echo $_SESSION['Company_Name'] ; ?></h3>
-</br>	
-</br>
+	   <div class="container">
+	<header class="jumbotron hero-spacer"style= "background: url(assets/img/background.jpg); margin-top: 0px; background-size: cover; height: 200px;">
+     <h1 align ="center" style= "color:white;"><strong> <?php if(isset($_SESSION['Company_Name'])) echo $_SESSION['Company_Name'] ; ?></strong></h1>
+	 </header>  
 	<form method = "post" enctype = "multipart/form-data" style = "width:50%; margin: auto;">
 		<br/>
 		<h1>Add Product</h1>
@@ -149,16 +146,13 @@
 					<option>Livestock</option>
 					<option>Fruits</option>
 					<option>Vegetables</option>
-					<option>Raw foods</option>
-					<option>Beverages</option>
-					<option>Cocoa</option>
-					<option>Fishery</option>
-					<option>Mushroom</option>
+					<option>Poultry</option>
+					<option>Frozen foods</option>
+					<option>Tuber & Roots</option>
 					<option>Grain</option>
-					<option>Agrochemicals</option>
-					<option>Feeds</option>
-					<option>Seafoods</option>
-					<option>Animal Oil</option>
+					<option>Fish</option>
+					<option>Grains</option>
+					<option>Others</option>
 			</select>
 		   <p style = "color:blue;">Products with specified category have more customers</p>
 		   <i class="fa fa-user"></i>
@@ -193,9 +187,20 @@
         </p>
 	</form>
 	
+		<div style = "padding: 1em 0 2em 0;">
 	
+				
+</div>
+
 	
 
+	</div>
+		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
+										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
+										<p align = "center">Contact Us: (234) 8133936723
+											&copy; FarmConnect. All rights reserved</p>
+								
+		</footer>
 	
 	
 	

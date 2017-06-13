@@ -24,6 +24,8 @@
 		
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font-Awesome Icons -->
+	<link href = "assets/css/font-awesome.min.css" rel = "stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/heroic-features.css" rel="stylesheet">
@@ -238,7 +240,7 @@
 			
 				
 					
-			
+	
 				
 
 			
@@ -250,36 +252,27 @@
 			 </div>
 			 
 			 
-			 <div class="form-group ">
-			   <input type="text" class="form-control" minlength="8" placeholder="Username or Company Name " id="UserName" name ="username">
-			   <i class="fa fa-user"></i>
+			 <div class="form-group" style = "position:relative;">
+			   <input   type="text" style = "padding-left: 25px;" class="form-control" minlength="8" placeholder="Username or Company Name " id="UserName" name ="username"/>
+			  <i class="fa fa-user" style = "position: absolute; left: 0; top:2px; padding: 9px 8px; color: #aaa"></i>
 			 </div>
-			 <div class="form-group ">
-			   <input type="email" class="form-control" placeholder="Email " id="Email" name ="email">
-			   <i class="fa fa-user"></i>
+			 <div class="form-group" style = "position:relative;">
+			   <input type="email"  style = "padding-left: 25px;" class="form-control" placeholder="Email " id="Email" name ="email">
+			   <i class="fa fa-envelope" style = "position: absolute; left: 0; top:2px; padding: 9px 8px; color: #aaa"></i>
 			 </div>
-			 <div class="form-group log-status">
-			   <input type="password" class="form-control" placeholder="Password" minlength="8" id="Passwod" name = "password">
-			   <i class="fa fa-lock"></i>
+			 <div class="form-group log-status" style = "position:relative;">
+			   <input type="password" style = "padding-left: 25px;" class="form-control"  class="form-control" placeholder="Password" minlength="8" id="Passwod" name = "password">
+			   <i class="fa fa-lock"style = "position: absolute; left: 0; top:2px; padding: 9px 8px; color: #aaa"></i>
 			 </div>
-			 <div class="form-group log-status">
-			   <input type="password" class="form-control" placeholder="Confrim Password" minlength="8" id="Passwod" name = "confirmpassword">
-			   <i class="fa fa-lock"></i>
+			 <div class="form-group log-status"style = "position:relative;">
+			   <input type="password"  style = "padding-left: 25px;" class="form-control" class="form-control" placeholder="Confrim Password" minlength="8" id="Passwod" name = "confirmpassword">
+			   <i class="fa fa-lock" style = "position: absolute; left: 0; top:2px; padding: 9px 8px; color: #aaa"></i>
 			 </div>
 		
-		<div class="form-group log-status">
 		
-	
-		</br>
-		<p style = "color: #808080;">Upload Profile Picture:</p>
-		<input class = "form-control" type = "file" name = "image" value = "Upload Picture"/>
-		<br/><br/>
-		 </div>
-		
-		
-		
-          <button style = "width: 100%; margin-bottom: 50px;"name = "signUpbtn" type="submit" class="btn btn-primary" >Register</button> 
-			 
+		<div align = "center" >
+          <button  align = "center"; style = "width: 50%; margin-bottom: 50px;"name = "signUpbtn" type="submit" class="btn btn-primary" ><strong>Register</strong></button> 
+		</div>
 			
 		
 		  
@@ -287,6 +280,16 @@
       </div>
     </div>
 
+	<div style = "padding: 1em 0 2em 0;">
+	
+		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
+										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
+										<p align = "center">Contact Us: (234) 8133936723
+											&copy; FarmConnect. All rights reserved</p>
+								
+		</footer>
+				
+</div>
 
 
 	

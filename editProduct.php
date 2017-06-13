@@ -208,7 +208,17 @@
 	</form>
 	
 	
+		<div style = "padding: 1em 0 2em 0;">
 	
+		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
+										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
+										<p align = "center">Contact Us: (234) 8133936723
+											&copy; FarmConnect. All rights reserved</p>
+								
+		</footer>
+				
+</div>
+
 			
 
 

@@ -67,45 +67,14 @@
 <!--img src = "img/background3.jpg" id = "fsbg" width = "100%" height ="auto" style = "margin-top:0px; z-index: -100; min-width: 1040px;min-height: 100%;margin-left: 0px; position: fixed;"-->
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.php" style = "padding-right = 45px; "><strong>Farm Connect</strong></a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                   <li>
-                        <a href="register.php">Register</a>
-                    </li>
-					
-					<li>
-                        <a href="login.php">Buy Farm Products</a>
-                    </li>
-					<li>
-                        <a href="loginfarmers.php">Login As Farmer</a>
-                    </li>
-					
-					
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
 <div style = "height: 75%;">
   <div class="login-form"  style = "margin-top: 75px;">
   <div class = "thumbnail" style="width: 50%; margin:auto;">
 
     <form method = "POST" style = "width:80%; margin: auto;">
-	 <h1>Sign In</h1>
+	 <h1 align = "center"><strong>FARMCONNECT</strong></h1>
+	 <h2 align = "center">Buyer's Sign In</h2>
+	 
 	 
 			
 			 <div class="form-group">
@@ -127,20 +96,19 @@
 		   </div>
 		   </div>
 		  </div>
-		   
-	   <footer style = "height: 250px; background: #f1f1f1;">
-	   <hr "size = 2" style = "color: #000;"/>	
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; farmconnect.com</p>
-                </div>
-            </div>
-        </footer>
-
+		  
    
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script src="js/index.js"></script>
+		<div style = "padding: 1em 0 2em 0;">
 	
+		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
+										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
+										<p align = "center">Contact Us: (234) 8133936723
+											&copy; FarmConnect. All rights reserved</p>
+								
+		</footer>
+				
 </body>
 </html>

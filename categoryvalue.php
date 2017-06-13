@@ -61,18 +61,17 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-		
-	
 	<!-- Font-Awesome Icons -->
 	<link href = "assets/css/font-awesome.min.css" rel = "stylesheet">
-			
+	
+		
     <!-- Custom CSS -->
     <link href="css/heroic-features.css" rel="stylesheet">
 
     
 </head>
 
-<body style="padding-top: 0px; padding-bottom: 0px;">
+<body style="padding-top: 0px;">
     
     <!-- Navigation -->
    
@@ -87,7 +86,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-              <a class="navbar-brand" href="index.php" style = "padding-right: 100px; font-size: 25px; "><strong>FarmConnect.com</strong></a>
+              <a class="navbar-brand" href="index.php"style = "padding-right: 100px; font-size: 25px; "><strong>FarmConnect.com</strong></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -120,7 +119,7 @@
     </nav>
 
 	 <h1 align ="center" style = "padding-top: 80px;color: #fff;"><strong>Taking Agriculture to Another Level</strong></h1>
-	 <p align = "center"style = "color: #fff;">A commercial platform to expand the customer scale for farmers and ease purchase for buyers online.</p>
+	 <p align = "center"style = "color: #fff;">A commercial platform to expand the customer scale for farmers and ease purchase for buyer online.</p>
 	  <div class = "container">
 	  <form method = "post" action = "searchresult.php" style = "width: 45%; margin: auto;">
 			<input type = "text" name = "searchvalue" placeholder="What do you need?" maxlength="20" style="margin-left: 80px;width: 300px; padding:7px; border:1px solid blue; border-radius-top-left: 5px;border-radius-bottom-left: 5px;">
@@ -136,12 +135,14 @@
 	 <div class="row text-center" ">
 	 <h1 align ="center" ><strong> Explore Our MarKetPlace</strong></h1><br/><br/>
 		<?php
-			$count = "SELECT * FROM category";
+			$value = $_GET["value"];
+			$count = "SELECT * FROM products";
 			$countquery = mysqli_query($conn, $count);
+			
 			$c = mysqli_num_rows($countquery);
 			$rand = rand(9, $c) - 9;
 			
-			$sql = "SELECT * FROM category WHERE 'id' > '$rand' LIMIT 9";
+			$sql = "SELECT * FROM products WHERE  `type_product` LIKE '%$value%'  AND 'id' > '$rand' LIMIT 9 ";
 			$run_user = mysqli_query($conn, $sql);
 		
 				
@@ -154,9 +155,9 @@
 			<div class = "col-md-4">
 			<div class = "thumbnail" align = "center">
 				<form method = "post" action = "cart.php?action=add&id=<?php echo $row["id"]; ?>">
-				<a href = "categoryvalue.php?action=view&value=<?php echo $row["Categoryname"]; ?>"><span class = "hint"><strong>Click to view </strong></span><img class = "img-responsive"
+				<a href = "productsview.php?action=view&id=<?php echo $row["id"]; ?>"><span class = "hint"><strong>Click to Buy</strong></span><img class = "img-responsive"
 				<?php
-					echo '<img src = "data:image/jpeg;base64,'.base64_encode($row["image"]).'">';
+					echo '<img src = "data:image/jpeg;base64,'.base64_encode($row[8]).'">';
 					
 				
 				$_SESSION['id'] =$row[0]; 
@@ -166,10 +167,17 @@
 				
 			
 				</a>
-				<h4 class = "text-info"><strong><?php echo $row["Categoryname"]; ?></strong></h4>
+				<h4 class = "text-info"><strong><?php echo $row["Category"]; ?></strong></h4>
+				<h4 class = "text-info" ><strong>Seller: </strong><?php echo $row["CompanyName"]; ?></h4>
+				
+				<h4 class = "text-danger">Price: #<?php echo $row["Prcie"]; ?></h4>
+				<input type = "hidden" name = "hidden_cat" value = "<?php echo $row["Category"]; ?>" />
+				<input type = "hidden" name = "hidden_price" value = "<?php echo $row["Prcie"]; ?>" />
+				<input type = "hidden" name = "hidden_ID" value = "<?php echo  $row[0]; ?>" />
 				<?php 
 				
-				$_SESSION['id'] =$row[0]; ?>
+				$_SESSION['id'] =$row[0]; 
+		?>
 					
 				</div>
 				
@@ -197,7 +205,8 @@
 	
 		</div>	
 	
-	<div style = "padding: 1em 0 2em 0;">
+	</div>
+		<div style = "padding: 1em 0 2em 0;">
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
@@ -207,8 +216,6 @@
 		</footer>
 				
 </div>
-	
-	</body>
-	
 
+	</body>
 </html>

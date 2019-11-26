@@ -4,13 +4,18 @@
 	ini_set('default_socket_timeout', 300);
 
 	include_once "resource/session.php";
-
+			$servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbname = "register";
+			
+			$conn = mysqli_connect($servername, $username, $password,$dbname);
 
 		if(isset($_POST['AddProduct'])){
 			if(isset($_POST['username']) && (isset($_POST['phone'])) && (isset($_POST['select_category'])) && (isset($_POST['category'])) && (isset($_POST['price'])) && ($_FILES['image']['tmp_name'] == TRUE) ){
 				$image = addslashes($_FILES['image']['tmp_name']);
 				$name = addslashes($_FILES['image']['name']);
-				$image = mysql_real_escape_string(file_get_contents($image));
+				$image = mysqli_real_escape_string($conn,file_get_contents($image));
 				//$image = base64_encode($image);
 				saveimage($name, $image);
 						
@@ -37,13 +42,10 @@
 		function saveimage($name, $image){
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
-			$conn = mysql_connect($servername, $username, $password);
-			mysql_select_db($dbname, $conn);
-			
-			
+			$conn = mysqli_connect($servername, $username, $password,$dbname);
 			$username = $_POST['username'];
 			$phone = $_POST['phone'];
 			$price = $_POST['price'];
@@ -52,12 +54,12 @@
 			$select = $_POST['select_category'];
 			
 				
-			$sql = "INSERT INTO products (CompanyName, Category, type_product, Description, Phone, Prcie, ImageName, image)
+			$sql = "INSERT INTO products (CompanyName, Category, type_product, Description, Phone, Price, ImageName, image)
 			VALUES ('$username', '$category', '$select', '$description', '$phone', '$price', '$name', '$image')";
 		
-				$result = mysql_query($sql, $conn);
+				$result = mysqli_query($conn,$sql);
 				if($result){
-					echo "<script>window.open('FarmerProfile.php', '_self')</script>";
+					echo "<script> window.open('FarmerProfile.php', '_self'); </script>";
 				}
 				else{
 					echo "<br/>Not Uploaded";
@@ -84,7 +86,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E Farming: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -107,7 +109,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php"><strong>EFarming.com</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"style = "font-weight: bold;">
                 <ul class="nav navbar-nav">
@@ -197,8 +199,8 @@
 	</div>
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; E Farming. All rights reserved</p>
 								
 		</footer>
 	

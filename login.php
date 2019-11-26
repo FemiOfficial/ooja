@@ -2,7 +2,7 @@
 	include_once "resource/session.php";
 				$servername = "localhost";
 				$username = "root";
-				$password = "femi";
+				$password = "";
 				$dbname = "register";
 
 				// Create connection
@@ -50,7 +50,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E- Farming: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -72,7 +72,7 @@
   <div class = "thumbnail" style="width: 50%; margin:auto;">
 
     <form method = "POST" style = "width:80%; margin: auto;">
-	 <h1 align = "center"><strong>FARMCONNECT</strong></h1>
+	 <h1 align = "center"><strong>EFarming</strong></h1>
 	 <h2 align = "center">Buyer's Sign In</h2>
 	 
 	 
@@ -105,8 +105,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

@@ -7,7 +7,7 @@
 			
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			//$conn = mysql_connect($servername, $username, $password);
@@ -20,12 +20,11 @@
 				
 				if(isset($_SESSION['Company_Name'])){
 				 $valuetosearch = $_SESSION['Company_Name'];
-				 $sql = "SELECT * FROM products WHERE CompanyName = '$valuetosearch'";
+				 $sql = "SELECT * FROM products WHERE CompanyName = '$valuetosearch' ";
 				$result = mysqli_query($conn, $sql);
-				 
 				}
 				else{
-					$sql = "SELECT * FROM 'products'";
+					$sql = "SELECT * FROM products";
 					$result = mysqli_query($conn, $sql);
 				}
 				
@@ -59,7 +58,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E Farming : Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -90,7 +89,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-             <a class="navbar-brand" href="index.php" style = "padding-right: 100px; "><strong>Farm Connect</strong></a>
+             <a class="navbar-brand" href="index.php" style = "padding-right: 100px; "><strong>E Farming</strong></a>
             </div>
 			
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -145,7 +144,6 @@
 				<?php 
 				
 					$check_user = mysqli_num_rows($result);
-				
 					if($check_user > 0){
 					while($row = mysqli_fetch_array($result)){
 			
@@ -155,7 +153,7 @@
 				<td><?php echo '<img  style = " border-radius: 10px;height: 45px; width: 45px;"src = "data:image/jpeg;base64,'.base64_encode($row["image"]).'">'; ?></td>
 				<td><?php echo $row['Category']; ?></td>
 				<td><?php echo $row['Description']; ?></td>
-				<td><?php echo $row['Prcie']; ?></td>
+				<td><?php echo $row['Price']; ?></td>
 				<td><a style= "padding: 5px;" href = "editProduct.php?edit=<?php echo $row["id"] ?>"><span class = "text-danger"><strong>Edit</strong></span></a><br/><button name = "delete" class= "btn" ><span class = "text-danger"><strong>Delete</strong></span></button></td>
 				
 			   <input type= "hidden" name = "hidden" value = <?php echo $row["id"]; ?> />
@@ -194,14 +192,11 @@
 				<?php
 				
 					if(isset($_SESSION['Company_Name'])){
-					$sql ="SELECT order.orderid,farmers.Company_Name, order.category, delivery.firstname,
-								delivery.lastname, delivery.mobile, delivery.address,
-							delivery.city, delivery.near, delivery.state, delivery.status 
-							FROM `delivery`, `order`, `farmers`
-							WHERE delivery.id = order.orderid AND farmers.Company_Name = '$_SESSION[Company_Name]' ";
+					$sql ="SELECT orders.orderid,farmers.Company_Name, orders.category, delivery.firstname, delivery.lastname, delivery.mobile, delivery.address, delivery.city, delivery.near, delivery.state, delivery.status FROM delivery INNER JOIN orders on delivery.id = orders.orderid INNER JOIN farmers on farmers.Company_Name = '$_SESSION[Company_Name]'";
+							
 					
 					
-					$result =  mysqli_query($conn, $sql);
+					if($result =  mysqli_query($conn, $sql)){
 					
 					$check_user = mysqli_num_rows($result);
 				
@@ -217,14 +212,14 @@
 							<td><?php echo $row["mobile"]; ?></td>
 							<td><?php echo "$row[address], $row[near]" ?></td>
 							<td><?php echo $row["state"]; ?></td>
-							<?php if($row["status"] == "Not Delivered"){ 
+							<?php if($row["status"] == "PENDING"){ 
 							?>
 							<td><input type= "text" class = "status" value = "Not Delivered" style = "color: red; border: 0px; font-weight: bold;"readonly/>
 							</td>
 							<?php
 							}else{
 							?>
-							<td><input type= "text" class = "status" value = "Confirmed Delivery" style = "color: red; border: 0px; font-weight: bold; " readonly/>
+							<td><input type="" e= "text" class = "status" value = "Confirmed Delivery" style = "color: red; border: 0px; font-weight: bold; " readonly/>
 							</td>
 						
 							<?php
@@ -235,7 +230,7 @@
 				<?php
 					} 						}				
 						
-					}
+					}}
 					
 					
 					
@@ -269,8 +264,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; E Farming. All rights reserved</p>
 								
 		</footer>
 				

@@ -8,7 +8,7 @@
 			
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			//$conn = mysql_connect($servername, $username, $password);
@@ -17,6 +17,9 @@
 			if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
 				}
+			// else{
+			// 	echo "<script> alert('Hello1!'); </script>";
+			// }
 				
 					
 			
@@ -32,7 +35,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>EFarming.com :Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php"><strong>E Farming</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -78,7 +81,7 @@
 	<header class="jumbotron hero-spacer" style= "background: url(assets/img/background.jpg); margin-top: 0px; background-size: cover; height: 200px;">
      <h1 align ="center" style = "color: white; margin-bottom: 0px;"><?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ; ?> </h1>
 		<?php
-		$sql = "SELECT * FROM Users WHERE `username` = '$_SESSION[username]' ";
+		$sql = "SELECT * FROM users WHERE `username` = '$_SESSION[username]' ";
 			$run_user = mysqli_query($conn, $sql);
 		
 				
@@ -118,16 +121,13 @@
 				
 				if(isset($_SESSION['username'])){
 					$username = $_SESSION['username'];
-				
-					$sql ="SELECT order.id, order.orderid, order.category, order.quantity, order.price,  delivery.status FROM `order`, `delivery` 
-					WHERE `Buyer` = '$username' AND order.orderid = delivery.id AND order.status = 'PENDING' " ;
-					
-					$result =  mysqli_query($conn, $sql);
-					
+					$sql ="SELECT orders.orderid,orders.category,orders.quantity,orders.price,delivery.id, delivery.status FROM (orders INNER JOIN delivery ON (orders.orderid = delivery.id AND orders.buyer = '$username' AND orders.status ='PENDING')) ";
+					$checkuser=0;
+					if( $result =  mysqli_query($conn, $sql)){
 					$check_user = mysqli_num_rows($result);
-				
 					if($check_user > 0){
 					while($row = mysqli_fetch_array($result)){
+					
 				?>
 						
 					<tr>
@@ -146,9 +146,9 @@
 				
 				<?php
 						if(isset($_POST['update'])){
-							$sql = "UPDATE `register`.`order` SET `status` = 'DELIVERED' WHERE `order`.`id` = '$_POST[hiddenid]'  ";
+							$sql = "UPDATE orders SET status = 'DELIVERED' WHERE orders.orderid = '$_POST[hiddenid]' ";
 							$check = mysqli_query($conn, $sql);
-							
+							$check1 = mysqli_query($conn,"UPDATE delivery SET status = 'DELIVERED' WHERE delivery.id = '$_POST[hiddenid]'");
 							if($check){
 							?>
 							<script type = "text/javascript">
@@ -164,7 +164,7 @@
 					
 					}
 					
-					}
+					}}
 					
 					
 					
@@ -198,14 +198,11 @@
 				
 				if(isset($_SESSION['username'])){
 					$username = $_SESSION['username'];
-				
-					$sql ="SELECT order.orderid, order.category, order.quantity, order.price, delivery.id, order.status FROM `order`, `delivery` 
-					WHERE `Buyer` = '$username' AND order.orderid = delivery.id AND order.status = 'DELIVERED' " ;
-					
-					$result =  mysqli_query($conn, $sql);
-					
+					$sql ="SELECT orders.orderid,orders.category,orders.quantity,orders.price,delivery.id, delivery.status FROM (orders INNER JOIN delivery ON (orders.orderid = delivery.id AND orders.buyer = '$username' AND orders.status ='DELIVERED')) " ;
+					$checkuser=0;
+					if($result =  mysqli_query($conn, $sql)){
+
 					$check_user = mysqli_num_rows($result);
-				
 					if($check_user > 0){
 					while($row = mysqli_fetch_array($result)){
 				?>
@@ -224,7 +221,7 @@
 					
 					}
 					
-					}
+					}}
 					
 					
 					
@@ -256,8 +253,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; E Farming. All rights reserved</p>
 								
 		</footer>
 				

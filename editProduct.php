@@ -1,29 +1,28 @@
 <?php
 	
-	ini_set('mysql.connect_timeout', 300);
+	ini_set('mysql_connect.connect_timeout', 300);
 	ini_set('default_socket_timeout', 300);
 
 	include_once "resource/session.php";
 	$servername = "localhost";
 	$username = "root";
-	$password = "femi";
+	$password = "";
 	$dbname = "register";
 	
-	$conn = mysql_connect($servername, $username, $password);
-	mysql_select_db($dbname, $conn);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 	
 	
 	
 	if(isset($_GET['edit'])){
 		$id = $_GET['edit'];
-		$sql = "SELECT * FROM products WHERE id = '$id'";
-		$result = mysql_query( $sql, $conn);
-		$row = mysql_fetch_array($result); 
+		$sql = "SELECT * FROM products WHERE id = '$id' ";
+		if($result = mysqli_query($conn,$sql)){
+		$row = mysqli_fetch_array($result); 
 		
 		
 		
 	
-	}
+	}}
 	if (isset($_POST["AddProduct"])){
 		 if (!empty($_POST['phone']) && (!empty($_POST['select_category'])) && (!empty($_POST['category'])) && (!empty($_POST['price']))){
 		$username = $_POST["username"];
@@ -39,9 +38,9 @@
 		$sql = "UPDATE products SET CompanyName = '$_POST[username]', 
 					Category='$_POST[category]', 
 					Description='$_POST[description]', 
-					Phone='$_POST[phone]', Prcie='$_POST[price];'
-				    WHERE id = '$id'";
-		$result = mysql_query($sql, $conn);
+					Phone='$_POST[phone]', Price='$_POST[price];'
+				    WHERE id = '$id' ";
+		$result = mysqli_query($conn,$sql);
 		?>
 		
 		<script type = "text/javascript">
@@ -70,10 +69,10 @@
 		else{
 		$image = addslashes($_FILES['image']['tmp_name']);
 		$name = addslashes($_FILES['image']['name']);
-		$image = mysql_real_escape_string(file_get_contents($image));
+		$image = mysqli_real_escape_string(file_get_contents($image));
 		
 		$sql = "UPDATE products SET image = '$image', ImageName = '$name' WHERE id = '$id' "; 
-		$result = mysql_query( $sql, $conn);
+		$result = mysqli_query($conn,$sql);
 	
 		}
 		
@@ -95,7 +94,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E - Farming : Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -118,7 +117,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="#"><strong>E- Farming</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -182,7 +181,7 @@
 		   <i class="fa fa-user"></i>
 		 </div>
 		  <div class="form-group ">
-		   <input type="number" class="form-control" minlength="6"  placeholder="Enter Price of Product" id="price" name ="price" value = "<?php echo $row["Prcie"]; ?>">
+		   <input type="number" class="form-control" minlength="6"  placeholder="Enter Price of Product" id="price" name ="price" value = "<?php echo $row["Price"]; ?>">
 		   <i class="fa fa-user"></i>
 		 </div>
 		 
@@ -212,8 +211,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us:  8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

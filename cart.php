@@ -7,7 +7,7 @@
 			
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			//$conn = mysql_connect($servername, $username, $password);
@@ -19,7 +19,6 @@
 				
 			if(isset($_POST["buy"])){
 			
-					
 				if(isset($_SESSION["shopping_cart"])){
 					$item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
 					if(!in_array($_GET["id"], $item_array_id)){
@@ -61,7 +60,7 @@
 					$_SESSION["shopping_cart"][0] = $item_array;
 				}
 				
-				
+			
 			}
 			if(isset($_GET["action"])){
 			
@@ -120,7 +119,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>EFarming.com: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -152,7 +151,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php" style = "padding-right:100px; "><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php" style = "padding-right:100px; "><strong>E-Farming</strong></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -194,10 +193,9 @@
 	<header class="jumbotron hero-spacer"style= "background: url(img/background.jpg); margin-top: 0px; background-size: cover; height: 200px;">
      <h1 align ="center" style = "color: white; margin-bottom: 0px;"><?php if(isset($_SESSION['username'])) echo $_SESSION['username'] ; ?> </h1>
 		<?php
-		$sql = "SELECT * FROM Users WHERE `username` = '$_SESSION[username]' ";
-			$run_user = mysqli_query($conn, $sql);
-		
-				
+		$sql = "SELECT * FROM users WHERE `username` == '$_SESSION[username]' ";
+			$checkuser=0;
+			if($run_user = mysqli_query($conn, $sql)){
 				$check_user = mysqli_num_rows($run_user);
 				
 				if($check_user > 0){
@@ -208,7 +206,7 @@
 		<h3 align ="center" style = "color: white; margin-top: 0px;"><?php echo $row["email"]; ?></h3>
 			<?php
 					}
-		}
+		}}
 		?>
 	 
 	 </header>   
@@ -247,7 +245,7 @@
 						?> 
 						<td><?php echo $category; ?></td>
 						<td><?php echo $quantity; ?></td>
-						<td># <?php echo $price; ?></td>
+						<td>Rs. <?php echo $price; ?></td>
 						<td><?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
 						<td><a href = "cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class = "text-danger">Remove</span></a></td>
 						
@@ -258,10 +256,9 @@
 							
 					}
 					
-					$sql = "INSERT INTO `order`(`orderid`, `category`, `quantity`, `price`, `Buyer`, `productid`, `status`) VALUES 
-							('$_SESSION[orderid]','$category','$quantity','$price','$_SESSION[username] ','$id', `PENDING`)";
+					$sql = "INSERT INTO orders(orderid,category,quantity,price,buyer,productid,status) VALUES 
+							('$_SESSION[orderid]','$category','$quantity','$price','$_SESSION[username] ','$id','PENDING')";
 					$result = mysqli_query($conn, $sql);
-			
 					}else{
 						$_SESSION["total"] = $total;
 					}
@@ -271,7 +268,7 @@
 					?>
 
 					<p>
-						<h3 align = "right"><strong>Bill: #<?php  echo  number_format($total, 2) ?></strong></h3>
+						<h3 align = "right"><strong>Bill: Rs.<?php  echo  number_format($total, 2) ?></strong></h3>
 					</p>
 								
 			</table>
@@ -290,18 +287,21 @@
 			
 			
 			
-			if($page == "" || $page == "1"){
+			if($page == 0 || $page == 1){
 			
 			$page1 = 0;
 			
-			}else{
-				$page1 = ($page*5)-5;
+			}
+			else
+			{
+				$page1 = ($page)*5;
+				$page1 = $page1-5;
 			
 			}
 			
 			
 			$sql = "SELECT * FROM products WHERE 'id' > '$rand' LIMIT $page1,6";
-			$run_user = mysqli_query($conn, $sql);
+			if($run_user = mysqli_query($conn, $sql)){
 			$check_user = mysqli_num_rows($run_user);
 				
 				if($check_user > 0){
@@ -315,13 +315,14 @@
 				<?php
 					echo '<img src = "data:image/jpeg;base64,'.base64_encode($row[8]).'">';
 				?>
+				>
 				<div align = "center">
 				<h4 class = "text-info"><strong><?php echo $row["Category"]; ?></strong></h4>
 				<h4 class = "text-info" ><strong>Seller: </strong><?php echo $row["CompanyName"]; ?></h4>
 				
-				<h4 class = "text-danger">Price: #<?php echo $row["Prcie"]; ?></h4>
+				<h4 class = "text-danger">Price: Rs.<?php echo $row["Price"]; ?></h4>
 				<input type = "hidden" name = "hidden_cat" value = "<?php echo $row["Category"]; ?>" />
-				<input type = "hidden" name = "hidden_price" value = "<?php echo $row["Prcie"]; ?>" />
+				<input type = "hidden" name = "hidden_price" value = "<?php echo $row["Price"]; ?>" />
 				<input type = "hidden" name = "hidden_name" value = "<?php echo $row["CompanyName"]; ?>" />
 				<input type ="number"  style = "width: 120px;" name = "quantity" class = "form-control" placeholder = "Enter Quantity"/></br>
 				<input  style =" background: green;" type = "submit" id = "buythis" name = "buy" class="btn btn-primary" value = "Buy Now!"/> </br>
@@ -337,11 +338,11 @@
 			}
 					$no_of_pages = ceil($c/9);
 					
-					for($i = 1 ; $i <= $no_of_pages; $i++){
+					for($i = 1 ; $i <= 2; $i++){
 						?><a href = "cart.php?page=<?php echo $i ?>"><?php echo $i." "; ?></a><?php 
 					
 					}
-				}
+				}}
 			
 			
 			
@@ -366,8 +367,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

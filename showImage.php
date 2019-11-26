@@ -1,7 +1,9 @@
+
+
 <?php
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			$conn = mysql_connect($servername, $username, $password);

@@ -2,11 +2,10 @@
 			include_once "resource/session.php";
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
-			$conn = mysql_connect($servername, $username, $password);
-			mysql_select_db($dbname, $conn);
+			$conn = mysqli_connect($servername, $username, $password,$dbname);
 						
 				
 					
@@ -23,7 +22,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E- Farming: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php"><strong>E - Farming</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -76,17 +75,17 @@
 		<?php
 			
 			if (isset($_POST["search"])){
-				$valuetosearch = mysql_real_escape_string(trim($_POST["searchvalue"]));
+				$valuetosearch = mysqli_real_escape_string($conn,trim($_POST["searchvalue"]));
 				
-				$sql = mysql_query("SELECT * FROM `products` WHERE `Description` LIKE '%$valuetosearch%' OR `type_product` LIKE '%$valuetosearch%' ");
+				$sql = mysqli_query($conn,"SELECT * FROM `products` WHERE `Description` LIKE '%$valuetosearch%' OR `type_product` LIKE '%$valuetosearch%' ");
 					
-				$c = mysql_num_rows($sql);
+				$c = mysqli_num_rows($sql);
 			?><h2 style= "text-align: left;"><?php echo $c ?> Product Found</h2><br/><?php
 			
 				$rand = rand(9, $c) - 9;
 				
 				
-				while ($row  = mysql_fetch_array($sql)){
+				while ($row  = mysqli_fetch_array($sql)){
 				
 				?>
 			<div class = "col-md-4">
@@ -124,8 +123,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

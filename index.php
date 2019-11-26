@@ -7,13 +7,16 @@
 			
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			$conn = mysqli_connect($servername, $username, $password, $dbname);
 			if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
 				}
+			// else{
+			// 	echo"<script> alert(1); </script>";
+			// }
 			
 ?>
 <style>
@@ -57,7 +60,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E Farming System</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -87,7 +90,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-              <a class="navbar-brand" href="index.php" style = "padding-right: 100px; font-size: 25px; "><strong>FarmConnect.com</strong></a>
+              <a class="navbar-brand" href="index.php" style = "padding-right: 100px; font-size: 25px; "><strong>EFarming.com</strong></a>
 
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -104,7 +107,7 @@
                         <a href="loginfarmers.php" style= "font-weight: bold;padding-right: 80px;" >Login As Farmer</a>
                     </li>
 					<li>
-                        <a href="#" style= "font-weight: bold;padding-right: 50px;" >How it Works</a>
+                        <a href="govt.html" style= "font-weight: bold;padding-right: 50px;" >Government Schemes</a>
                     </li>
 					
 				<li>
@@ -135,8 +138,10 @@
 
 	 <div class="row text-center" ">
 	 <h1 align ="center" ><strong> Explore Our MarKetPlace</strong></h1><br/><br/>
-		<?php
+	  <h1 align ="center" ><strong> Register or Log In to continue!</strong></h1><br/><br/>
+		<!-- <?php
 			$count = "SELECT * FROM category";
+			echo ($count);
 			$countquery = mysqli_query($conn, $count);
 			$c = mysqli_num_rows($countquery);
 			$rand = rand(9, $c) - 9;
@@ -150,7 +155,7 @@
 				if($check_user > 0){
 					while($row = mysqli_fetch_array($run_user)){
 				
-				?>
+				?> -->
 			<div class = "col-md-4">
 			<div class = "thumbnail" align = "center">
 				<form method = "post" action = "cart.php?action=add&id=<?php echo $row["id"]; ?>">
@@ -201,8 +206,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

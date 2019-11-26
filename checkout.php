@@ -3,13 +3,15 @@
 include_once "resource/session.php";
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
-			
 			$conn = mysqli_connect($servername, $username, $password, $dbname);
 			if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
+					echo "<script> alert('not connected!'');</script>";
 				}
+				// else{
+				// 	echo"<script> alert('connected!');</script>";
+				// }
 			
 	if ($_SESSION["total"] == 0){
 	?>
@@ -42,11 +44,10 @@ include_once "resource/session.php";
 			<?php
 			}else{
 			$payment = 2000 + $_SESSION["total"];
-			$sql = "INSERT INTO delivery(id, firstname, lastname, mobile, address, city, near, price, state, status) 
+			$sql = "INSERT INTO delivery (id, firstname, lastname, mobile, address, city, near, price, state, status) 
 				VALUES('$id', '$fname', '$lname', '$mobile', '$address', '$city', '$near', '$payment',  '$state','PENDING')";	
 			
 			$result = mysqli_query($conn, $sql); 
-					echo $sql;
 			
 			if ($result){
 				?>
@@ -81,7 +82,7 @@ include_once "resource/session.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>EFarming.com: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +105,7 @@ include_once "resource/session.php";
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php"><strong>E Farming</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -141,7 +142,7 @@ include_once "resource/session.php";
 		
 		<div style = "border-top: ridge; border-bottom: ridge;  width: 95%; ">
 			<div style = "border-bottom: ridge;">
-			<h3 align= "left" style = "color: purple;">Add Delievry Address   <b style = "color: #ffbe58;">(Pay On Delivery)</b></h3>
+			<h3 align= "left" style = "color: purple;">Add Delivery Address   <b style = "color: #ffbe58;">(Pay On Delivery)</b></h3>
 			<p style = "float: right; color: grey;"><i>Your delivery address determines delivery charges</i> </p><br/>
 			</div>
 		
@@ -179,43 +180,42 @@ include_once "resource/session.php";
 		 <div class="form-group ">
 				<select name = "state" style = "width: 100%;" required>
 					<option>Select State</option>
-					<option>Abia</option>
-					<option>Adamawa</option>
-					<option>Akwa Ibom</option>
-					<option>Bauchi</option>
-					<option>Bauchi</option>
-					<option>Bayelsa</option>
-					<option>Benue</option>
-					<option>Borno</option>
-					<option>Cross River</option>
-					<option>Delta</option>
-					<option>Ebonyi</option>
-					<option>Enugu</option>
-					<option>Edo</option>
-					<option>Ekiti</option>
-					<option>Gombe</option>
-					<option>Imo</option>
-					<option>Jigawa</option>
-					<option>Kaduna</option>
-					<option>Kano</option>
-					<option>Kastina</option>
-					<option>Kebbi</option>
-					<option>Kogi</option>
-					<option>Kwara</option>
-					<option>Lagos</option>
-					<option>Nasarawa</option>
-					<option>Niger</option>
-					<option>Ogun</option>
-					<option>Ondo</option>
-					<option>Osun</option>
-					<option>Oyo</option>
-					<option>Plateau</option>
-					<option>Rivers</option>
-					<option>Sokoto</option>
-					<option>Taraba</option>
-					<option>Yobe</option>
-					<option>Zamfara</option>
-					<option>FCT(Abuja)</option>
+					<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+						<option value="Andhra Pradesh">Andhra Pradesh</option>
+						<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+						<option value="Assam">Assam</option>
+						<option value="Bihar">Bihar</option>
+						<option value="Chandigarh">Chandigarh</option>
+						<option value="Chhattisgarh">Chhattisgarh</option>
+						<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+						<option value="Daman and Diu">Daman and Diu</option>
+						<option value="Delhi">Delhi</option>
+						<option value="Goa">Goa</option>
+						<option value="Gujarat">Gujarat</option>
+						<option value="Haryana">Haryana</option>
+						<option value="Himachal Pradesh">Himachal Pradesh</option>
+						<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+						<option value="Jharkhand">Jharkhand</option>
+						<option value="Karnataka">Karnataka</option>
+						<option value="Kerala">Kerala</option>
+						<option value="Ladakh">Ladakh</option>							
+						<option value="Lakshadweep">Lakshadweep</option>
+						<option value="Madhya Pradesh">Madhya Pradesh</option>
+						<option value="Maharashtra">Maharashtra</option>
+						<option value="Manipur">Manipur</option>
+						<option value="Meghalaya">Meghalaya</option>
+						<option value="Mizoram">Mizoram</option>
+						<option value="Nagaland">Nagaland</option>
+						<option value="Orissa">Orissa</option>
+						<option value="Pondicherry">Pondicherry</option>
+						<option value="Punjab">Punjab</option>
+						<option value="Rajasthan">Rajasthan</option>
+						<option value="Sikkim">Sikkim</option>
+						<option value="Tamil Nadu">Tamil Nadu</option>
+						<option value="Tripura">Tripura</option>
+						<option value="Uttaranchal">Uttaranchal</option>
+						<option value="Uttar Pradesh">Uttar Pradesh</option>
+						<option value="West Bengal">West Bengal</option>
 					
 			</select>
 		   <i class="fa fa-user"></i>
@@ -231,55 +231,7 @@ include_once "resource/session.php";
 		
 		
 		
-				<div class = "table-responsive" id= "tbl_cart" style= "width : 75% ;padding: 30px;" >
-			<h1 align = "left">Items In Cart</h1>
-			<table class = "table table-bordered">
-				<tr>
-					<th width = "10%">Item</th>
-					<th width = "20%">Item Name</th>
-					<th width = "5%">Quantity</th>
-					<th width = "20%">Price</th>
-					<th width = "10%">Seller</th>
-					
-				</tr>
-		<?php
-		$sql =	"SELECT order.category, order.quantity, order.price, products.image, products.CompanyName FROM `order`, `products` WHERE 
-			order.Buyer = '$_SESSION[username]' AND order.orderid =  '$_SESSION[orderid]' AND products.id = order.productid ";
-			$run_user = mysqli_query($conn, $sql);
-		
-				$check_user = mysqli_num_rows($run_user);
-				
-				if($check_user > 0){
-					while($row = mysqli_fetch_array($run_user)){
-			
-		?>
-				
-				
-				
-				<tr>
-					<th width = "10%"><?php echo '<img  style = " border-radius: 10px;height: 45px; width: 45px;"src = "data:image/jpeg;base64,'.base64_encode($row["image"]).'">'; ?></th>
-					<th width = "20%"><?php echo $row["category"]; ?></th>
-					<th width = "5%"><?php echo $row["quantity"]; ?></th>
-					<th width = "20%"><?php echo $row["price"]; ?></th>
-					<th width = "20%" style = "color: purple;"><?php echo $row["CompanyName"]; ?></th>
-					
-				</tr>
-		<?php	
-					}
-		}
-		?>
-			
-			
-			
-			
-			
-			
-			
-			</table>
-			</div>
-		
-		</div>
-		<br/>
+						<br/>
 		<br/>
 
  <!-- jQuery -->
@@ -301,16 +253,16 @@ include_once "resource/session.php";
 		<div class = "order" style = " height: 200px; background: #333; opacity: 0.7; filter:alpha (opacity =70); padding-left: 50px; padding-right: 50px; padding-top: 20px;">
 		   <div style ="float: left; width: 40%; border: 2px solid #fff; border-radius: 5px; padding-left: 10px;padding-right: 10px;  margin-bottom: 20px;" >
 		   <h3 style = "color: #ff8400;">Order Summary</h3>
-			<p style= "color: #fff;">Purchase Bill:  NGN<?php echo number_format($_SESSION["total"], 2);?><br/>
-			Delivery Charges:   NGN<?php $d = 2000; echo number_format($d, 2); ?><br/><br/>
-			TOTAL:  NGN<?php  echo number_format($d + $_SESSION["total"], 2)?>
+			<p style= "color: #fff;">Purchase Bill:  Rs.<?php echo number_format($_SESSION["total"], 2);?><br/>
+			Delivery Charges:   Rs.<?php $d = 2000; echo number_format($d, 2); ?><br/><br/>
+			TOTAL:  Rs.<?php  echo number_format($d + $_SESSION["total"], 2)?>
 			
 			</p>
 		   
 		   </div>
 		   <div style ="float: right; color: #fff; width: 50%;" align = "right">
 		   <p>
-		   <h3 style= "color: #ff8400;"><strong>NGN<?php echo number_format($d + $_SESSION["total"], 2)?></strong></h3>
+		   <h3 style= "color: #ff8400;"><strong>Rs.<?php echo number_format($d + $_SESSION["total"], 2)?></strong></h3>
 		   <button name = "orderProduct" type="submit" class="btn btn-primary" style= "text-shadow: none;height: 50px; color: #fff; font-size:20px; border-radius:5px; background: #333;">Order Now</button> 
 			
 			</p></div>
@@ -322,8 +274,8 @@ include_once "resource/session.php";
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us: 8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				

@@ -2,7 +2,7 @@
 	include_once "resource/session.php";
 				$servername = "localhost";
 				$username = "root";
-				$password = "femi";
+				$password = "";
 				$dbname = "register";
 
 				// Create connection
@@ -32,7 +32,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E- Farming: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php" style = "padding-right = 45px; "><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php" style = "padding-right = 45px; "><strong>E- Farming</strong></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -172,7 +172,7 @@
 	   <hr "size = 2" style = "color: #000;"/>	
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; farmconnect.com</p>
+                    <p>Copyright &copy; EFarming.com</p>
                 </div>
             </div>
         </footer>

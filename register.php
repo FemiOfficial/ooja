@@ -1,5 +1,4 @@
 <?php
-				include_once "functions.php";
 				include_once "resource/session.php";
 				ini_set('mysql.connect_timeout', 300);
 				ini_set('default_socket_timeout', 300);
@@ -20,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>EFarming.com</title>
 		
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button> <a class="navbar-brand" href="index.php" style = "padding-right = 45px; "><strong>Farm Connect</strong></a>
+                </button> <a class="navbar-brand" href="index.php" style = "padding-right = 45px; "><strong>EFarming.com</strong></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -80,11 +79,17 @@
 	
 							$servername = "localhost";
 							$username = "root";
-							$password = "femi";
+							$password = "";
 							$dbname = "register";
 							
-							$conn = mysql_connect($servername, $username, $password);
-							mysql_select_db($dbname, $conn);
+							$conn = mysqli_connect($servername, $username, $password, $dbname);
+			if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+				}
+			// else{
+			// 	echo"<script> alert(1); </script>";
+			// }
+							
 							
 	if(isset($_POST['signUpbtn']) ){
 	
@@ -104,10 +109,9 @@
 					//$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 								
 							
-							$sql = "INSERT INTO users(username, email, password)
-							VALUES ('$username', '$email', '$password')";
+							$sql = "INSERT INTO users(username, email, password) VALUES('$username', '$email', '$password')";
 					
-					$result = mysql_query($sql, $conn);
+						$result = mysqli_query($conn,$sql);
 						if($result){
 						?>
 				
@@ -161,7 +165,7 @@
 							$sql = "INSERT INTO farmers(Company_Name, email, password)
 							VALUES ('$username', '$email', '$password ')";
 						
-						$result = mysql_query($sql, $conn);
+						$result = mysqli_query($conn,$sql);
 						
 						$message = "
 									Click the link below to confirm your email
@@ -284,8 +288,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us:  8133936723
+											&copy; Efarming. All rights reserved</p>
 								
 		</footer>
 				

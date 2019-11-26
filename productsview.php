@@ -7,7 +7,7 @@
 			
 			$servername = "localhost";
 			$username = "root";
-			$password = "femi";
+			$password = "";
 			$dbname = "register";
 			
 			$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -40,7 +40,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Farm Connect: Buy and Sell Raw Product Online</title>
+    <title>E-` Farming: Buy and Sell Raw Product Online</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"><strong>Farm Connect</strong></a>
+                <a class="navbar-brand" href="index.php"><strong>E-Farming</strong></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -168,8 +168,8 @@
 	
 		<footer id="footer" class="container" style ="background: #fff; color: black; width: 100%; ">
 										<hr style = "border-top: 1px solid #ccc;"><br/><br/><br/>
-										<p align = "center">Contact Us: (234) 8133936723
-											&copy; FarmConnect. All rights reserved</p>
+										<p align = "center">Contact Us:  8133936723
+											&copy; EFarming. All rights reserved</p>
 								
 		</footer>
 				
